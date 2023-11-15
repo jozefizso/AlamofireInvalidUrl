@@ -10,6 +10,14 @@ final class AlamofireInvalidUrlTests: XCTestCase {
     }
 
     func test_asURL_emptyString() throws {
-        let url = try "".asURL()
+        XCTAssertThrowsError(try "".asURL()) { error in
+            let afError = error as? AFError
+            XCTAssertNotNil(afError)
+            XCTAssertTrue(afError!.isInvalidURLError)
+        }
+    }
+    
+    func test_asURL_unencodedAddress() throws {
+        _ = try "http://www.example.org/path/File name with spaces.txt".asURL()
     }
 }
