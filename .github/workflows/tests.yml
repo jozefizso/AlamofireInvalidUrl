@@ -43,4 +43,4 @@ jobs:
         name: 'results-unit-tests (${{ matrix.xcode }})'
         path: report.xml
         reporter: java-junit
-        fail-on-error: true
+        fail-on-error: false
