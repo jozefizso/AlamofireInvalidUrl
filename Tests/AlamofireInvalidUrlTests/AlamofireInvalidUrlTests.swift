@@ -20,4 +20,10 @@ final class AlamofireInvalidUrlTests: XCTestCase {
     func test_asURL_unencodedAddress() throws {
         _ = try "http://www.example.org/path/File name with spaces.txt".asURL()
     }
+    
+    func test_asURL_encodedAddress() throws {
+        let url = try "http://www.example.org/path/File%20name%20with%20spaces.txt".asURL()
+        
+        XCTAssertEqual("www.example.org", url.host)
+    }
 }
